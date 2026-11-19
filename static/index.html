@@ -5,12 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MindPulse — Student Mental Health Score Predictor</title>
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%230f766e'/></svg>"
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="/static/style.css" />
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/static/style.css?v=2" />
 </head>
 
 <body>
@@ -134,8 +139,15 @@
                 <label for="avg_daily_usage_hours">Daily Screen Time</label>
                 <span class="value-pill" id="val-avg_daily_usage_hours">4.0 hrs</span>
               </div>
-              <input type="range" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="16" step="0.1"
-                value="4.0" />
+              <input
+                type="range"
+                id="avg_daily_usage_hours"
+                name="avg_daily_usage_hours"
+                min="0"
+                max="16"
+                step="0.1"
+                value="4.0"
+              />
             </div>
 
             <div class="field">
@@ -166,8 +178,15 @@
                 <label for="physical_activity_hours">Physical Activity</label>
                 <span class="value-pill" id="val-physical_activity_hours">1.5 hrs</span>
               </div>
-              <input type="range" id="physical_activity_hours" name="physical_activity_hours" min="0" max="8" step="0.1"
-                value="1.5" />
+              <input
+                type="range"
+                id="physical_activity_hours"
+                name="physical_activity_hours"
+                min="0"
+                max="8"
+                step="0.1"
+                value="1.5"
+              />
             </div>
 
             <div class="field slider-field">
@@ -175,8 +194,15 @@
                 <label for="sleep_hours_per_night">Sleep / Night</label>
                 <span class="value-pill" id="val-sleep_hours_per_night">7.2 hrs</span>
               </div>
-              <input type="range" id="sleep_hours_per_night" name="sleep_hours_per_night" min="2" max="14" step="0.1"
-                value="7.2" />
+              <input
+                type="range"
+                id="sleep_hours_per_night"
+                name="sleep_hours_per_night"
+                min="2"
+                max="14"
+                step="0.1"
+                value="7.2"
+              />
             </div>
           </div>
 
@@ -261,7 +287,7 @@
     </div>
   </main>
 
-  <script src="/static/script.js"></script>
+  <script src="/static/script.js?v=2"></script>
 </body>
 
 </html>
