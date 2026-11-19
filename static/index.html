@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MindPulse — Student Mental Health Score Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>MindPulse</span>
+      </div>
+      <div class="preset-group" aria-label="Sample presets">
+        <span class="preset-label">Try preset:</span>
+        <button type="button" class="preset-btn" data-preset="balanced">Balanced</button>
+        <button type="button" class="preset-btn" data-preset="crunch">Exam Crunch</button>
+        <button type="button" class="preset-btn" data-preset="scroller">Heavy Scroller</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Student Mental Health Score Predictor</h1>
+      <p>
+        Explore how daily screen time, study load, sleep, exercise, and stress patterns
+        relate to an estimated mental well-being score (0–10).
+      </p>
+    </section>
+
+    <div class="app-grid">
+      <form id="predict-form" class="card form-card" novalidate>
+        <!-- Section 1: Profile -->
+        <div class="form-section">
+          <div class="section-header">
+            <span class="step-badge">01</span>
+            <h2>Student Profile</h2>
+          </div>
+
+          <div class="field-grid two-col">
+            <div class="field">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" min="8" max="100" value="21" required />
+            </div>
+
+            <div class="field">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="academic_level">Academic Level</label>
+              <select id="academic_level" name="academic_level" required>
+                <option value="Undergraduate" selected>Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+                <option value="High School">High School</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="country">Country</label>
+              <input
+                type="text"
+                id="country"
+                name="country"
+                list="country-list"
+                value="India"
+                placeholder="Select or type country"
+                required
+              />
+              <datalist id="country-list">
+                <option value="India"></option>
+                <option value="USA"></option>
+                <option value="Canada"></option>
+                <option value="UK"></option>
+                <option value="Australia"></option>
+                <option value="Germany"></option>
+                <option value="France"></option>
+                <option value="Mexico"></option>
+                <option value="Turkey"></option>
+                <option value="Other"></option>
+              </datalist>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Digital Habits -->
+        <div class="form-section">
+          <div class="section-header">
+            <span class="step-badge">02</span>
+            <h2>Digital Habits</h2>
+          </div>
+
+          <div class="field-grid two-col">
+            <div class="field">
+              <label for="most_used_platform">Most Used Platform</label>
+              <select id="most_used_platform" name="most_used_platform" required>
+                <option value="Instagram" selected>Instagram</option>
+                <option value="YouTube">YouTube</option>
+                <option value="TikTok">TikTok</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Snapchat">Snapchat</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Twitter">Twitter</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="LINE">LINE</option>
+                <option value="KakaoTalk">KakaoTalk</option>
+                <option value="VKontakte">VKontakte</option>
+                <option value="WeChat">WeChat</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="purpose_of_use">Primary Purpose</label>
+              <select id="purpose_of_use" name="purpose_of_use" required>
+                <option value="Entertainment" selected>Entertainment</option>
+                <option value="Education">Education</option>
+                <option value="Networking">Networking</option>
+                <option value="News">News</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-grid two-col">
+            <div class="field slider-field">
+              <div class="label-row">
+                <label for="avg_daily_usage_hours">Daily Screen Time</label>
+                <span class="value-pill" id="val-avg_daily_usage_hours">4.0 hrs</span>
+              </div>
+              <input
+                type="range"
+                id="avg_daily_usage_hours"
+                name="avg_daily_usage_hours"
+                min="0"
+                max="16"
+                step="0.1"
+                value="4.0"
+              />
+            </div>
+
+            <div class="field">
+              <label for="daily_unlocks">Daily Phone Unlocks</label>
+              <input
+                type="number"
+                id="daily_unlocks"
+                name="daily_unlocks"
+                min="0"
+                max="1000"
+                value="130"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Lifestyle & Stress -->
+        <div class="form-section">
+          <div class="section-header">
+            <span class="step-badge">03</span>
+            <h2>Daily Routine &amp; Stress</h2>
+          </div>
+
+          <div class="field-grid three-col">
+            <div class="field slider-field">
+              <div class="label-row">
+                <label for="study_hours">Study Hours</label>
+                <span class="value-pill" id="val-study_hours">4.5 hrs</span>
+              </div>
+              <input
+                type="range"
+                id="study_hours"
+                name="study_hours"
+                min="0"
+                max="16"
+                step="0.1"
+                value="4.5"
+              />
+            </div>
+
+            <div class="field slider-field">
+              <div class="label-row">
+                <label for="physical_activity_hours">Physical Activity</label>
+                <span class="value-pill" id="val-physical_activity_hours">1.5 hrs</span>
+              </div>
+              <input
+                type="range"
+                id="physical_activity_hours"
+                name="physical_activity_hours"
+                min="0"
+                max="8"
+                step="0.1"
+                value="1.5"
+              />
+            </div>
+
+            <div class="field slider-field">
+              <div class="label-row">
+                <label for="sleep_hours_per_night">Sleep / Night</label>
+                <span class="value-pill" id="val-sleep_hours_per_night">7.2 hrs</span>
+              </div>
+              <input
+                type="range"
+                id="sleep_hours_per_night"
+                name="sleep_hours_per_night"
+                min="2"
+                max="14"
+                step="0.1"
+                value="7.2"
+              />
+            </div>
+          </div>
+
+          <div class="hours-meter" id="hours-meter">
+            <span>Total tracked daily activities: <strong id="total-hours">17.2 / 24 hrs</strong></span>
+          </div>
+
+          <div class="field">
+            <label>Stress Level</label>
+            <div class="segmented-control" role="radiogroup" aria-label="Stress Level">
+              <input type="radio" name="stress_level" id="stress-low" value="Low" />
+              <label for="stress-low">Low</label>
+
+              <input type="radio" name="stress_level" id="stress-medium" value="Medium" checked />
+              <label for="stress-medium">Medium</label>
+
+              <input type="radio" name="stress_level" id="stress-high" value="High" />
+              <label for="stress-high">High</label>
+
+              <input type="radio" name="stress_level" id="stress-very-high" value="Very High" />
+              <label for="stress-very-high">Very High</label>
+            </div>
+          </div>
+        </div>
+
+        <div id="error-banner" class="error-banner hidden" role="alert"></div>
+
+        <button type="submit" id="submit-btn" class="submit-btn">
+          <span class="btn-text">Predict Mental Health Score</span>
+          <span class="spinner hidden" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <!-- Result Panel -->
+      <aside class="card result-card" aria-live="polite">
+        <div class="result-header">
+          <span class="result-eyebrow">Model Prediction</span>
+          <span id="status-badge" class="status-badge neutral">Ready</span>
+        </div>
+
+        <div class="gauge-wrap">
+          <svg class="gauge-svg" viewBox="0 0 180 180" aria-hidden="true">
+            <circle class="gauge-track" cx="90" cy="90" r="76" />
+            <circle class="gauge-fill" id="gauge-fill" cx="90" cy="90" r="76" />
+          </svg>
+          <div class="gauge-center">
+            <div id="score-value" class="score-value">--</div>
+            <div class="score-scale">out of 10</div>
+          </div>
+        </div>
+
+        <p id="result-summary" class="result-summary">
+          Adjust the inputs or pick a preset, then click <strong>Predict</strong> to estimate the score.
+        </p>
+
+        <div class="metrics-strip">
+          <div class="mini-metric">
+            <span class="mini-label">Sleep</span>
+            <strong id="metric-sleep">7.2h</strong>
+          </div>
+          <div class="mini-metric">
+            <span class="mini-label">Screen</span>
+            <strong id="metric-screen">4.0h</strong>
+          </div>
+          <div class="mini-metric">
+            <span class="mini-label">Study</span>
+            <strong id="metric-study">4.5h</strong>
+          </div>
+        </div>
+
+        <div class="insights-box">
+          <h3>Key Signals</h3>
+          <ul id="insights-list">
+            <li>Submit your profile to see personalized lifestyle takeaways.</li>
+          </ul>
+        </div>
+
+        <p class="disclaimer">
+          For educational and exploratory ML purposes only—not a medical or clinical diagnosis.
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
