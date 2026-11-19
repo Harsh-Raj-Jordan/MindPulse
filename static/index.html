@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-    rel="stylesheet"
-  />
+    rel="stylesheet" />
   <link rel="stylesheet" href="/static/style.css" />
 </head>
+
 <body>
   <div class="bg-orb orb-1" aria-hidden="true"></div>
   <div class="bg-orb orb-2" aria-hidden="true"></div>
@@ -74,27 +75,18 @@
 
             <div class="field">
               <label for="country">Country</label>
-              <input
-                type="text"
-                id="country"
-                name="country"
-                list="country-list"
-                value="India"
-                placeholder="Select or type country"
-                required
-              />
-              <datalist id="country-list">
-                <option value="India"></option>
-                <option value="USA"></option>
-                <option value="Canada"></option>
-                <option value="UK"></option>
-                <option value="Australia"></option>
-                <option value="Germany"></option>
-                <option value="France"></option>
-                <option value="Mexico"></option>
-                <option value="Turkey"></option>
-                <option value="Other"></option>
-              </datalist>
+              <select id="country" name="country" required>
+                <option value="India" selected>India</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <option value="UK">UK</option>
+                <option value="Australia">Australia</option>
+                <option value="Germany">Germany</option>
+                <option value="France">France</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Turkey">Turkey</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
           </div>
         </div>
@@ -142,28 +134,13 @@
                 <label for="avg_daily_usage_hours">Daily Screen Time</label>
                 <span class="value-pill" id="val-avg_daily_usage_hours">4.0 hrs</span>
               </div>
-              <input
-                type="range"
-                id="avg_daily_usage_hours"
-                name="avg_daily_usage_hours"
-                min="0"
-                max="16"
-                step="0.1"
-                value="4.0"
-              />
+              <input type="range" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="16" step="0.1"
+                value="4.0" />
             </div>
 
             <div class="field">
               <label for="daily_unlocks">Daily Phone Unlocks</label>
-              <input
-                type="number"
-                id="daily_unlocks"
-                name="daily_unlocks"
-                min="0"
-                max="1000"
-                value="130"
-                required
-              />
+              <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" max="1000" value="130" required />
             </div>
           </div>
         </div>
@@ -181,15 +158,7 @@
                 <label for="study_hours">Study Hours</label>
                 <span class="value-pill" id="val-study_hours">4.5 hrs</span>
               </div>
-              <input
-                type="range"
-                id="study_hours"
-                name="study_hours"
-                min="0"
-                max="16"
-                step="0.1"
-                value="4.5"
-              />
+              <input type="range" id="study_hours" name="study_hours" min="0" max="16" step="0.1" value="4.5" />
             </div>
 
             <div class="field slider-field">
@@ -197,15 +166,8 @@
                 <label for="physical_activity_hours">Physical Activity</label>
                 <span class="value-pill" id="val-physical_activity_hours">1.5 hrs</span>
               </div>
-              <input
-                type="range"
-                id="physical_activity_hours"
-                name="physical_activity_hours"
-                min="0"
-                max="8"
-                step="0.1"
-                value="1.5"
-              />
+              <input type="range" id="physical_activity_hours" name="physical_activity_hours" min="0" max="8" step="0.1"
+                value="1.5" />
             </div>
 
             <div class="field slider-field">
@@ -213,15 +175,8 @@
                 <label for="sleep_hours_per_night">Sleep / Night</label>
                 <span class="value-pill" id="val-sleep_hours_per_night">7.2 hrs</span>
               </div>
-              <input
-                type="range"
-                id="sleep_hours_per_night"
-                name="sleep_hours_per_night"
-                min="2"
-                max="14"
-                step="0.1"
-                value="7.2"
-              />
+              <input type="range" id="sleep_hours_per_night" name="sleep_hours_per_night" min="2" max="14" step="0.1"
+                value="7.2" />
             </div>
           </div>
 
@@ -308,4 +263,5 @@
 
   <script src="/static/script.js"></script>
 </body>
+
 </html>
