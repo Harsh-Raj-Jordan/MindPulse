@@ -1,42 +1,47 @@
-# MindPulse — Student Mental Health Score Predictor
+# 🧠 MindPulse — Student Mental Health Score Predictor
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-0f766e?style=for-the-badge&logo=render&logoColor=white)](https://mindpulse-mkvi.onrender.com/)
 [![Python](https://img.shields.io/badge/Python-3.12.4-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.6.1-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 
-**MindPulse** is an end-to-end machine learning web application that predicts a student's mental well-being score (on a scale of `0` to `10`) based on their demographic profile, digital habits, daily routine, and stress level. Built with a **scikit-learn** regression pipeline served through **FastAPI** and a responsive **HTML/CSS/JavaScript** dashboard, both the frontend and ML inference API run seamlessly from a single web service.
+An end-to-end ML web app that predicts a student's **mental well-being score (0–10)** from their demographic profile, digital habits, daily routine, and stress level.
 
-**Live Application:** [https://mindpulse-mkvi.onrender.com/](https://mindpulse-mkvi.onrender.com/)  
-**Interactive API Docs (Swagger UI):** [https://mindpulse-mkvi.onrender.com/docs](https://mindpulse-mkvi.onrender.com/docs)
+- **Model:** scikit-learn regression pipeline
+- **Backend:** FastAPI
+- **Frontend:** responsive HTML/CSS/JavaScript dashboard
+- **Hosting:** frontend and ML API run from a single web service
 
-> **Note on Render Free Tier:** If the application has been inactive for 15+ minutes, the initial page load may take 30 to 50 seconds while the server wakes up. Subsequent predictions respond almost instantaneously.
+🔗 **Live App:** https://mindpulse-mkvi.onrender.com/
+📘 **API Docs (Swagger UI):** https://mindpulse-mkvi.onrender.com/docs
 
----
-
-## Key Features
-
-* **Real-Time ML Predictions:** Estimates a student's mental health score (`0.00` to `10.00`) using a trained Random Forest Regression pipeline (`$R^2 = 0.89$`).
-* **Interactive Lifestyle Controls:** Synced range sliders for screen time, study hours, physical activity, and sleep, alongside a live 24-hour activity sanity meter.
-* **One-Click Sample Presets:** Quickly test the model with three built-in student personas: **Balanced**, **Exam Crunch**, and **Heavy Scroller**.
-* **Visual Score Gauge & Status Categories:** Animated SVG radial gauge that dynamically color-codes results into four tiers (**Thriving**, **Balanced**, **Moderate Strain**, **High Strain**).
-* **Personalized Habit Signals:** Automatically highlights up to three actionable takeaways based on sleep duration, screen usage, phone unlocks, exercise, and reported stress.
-* **Validated REST API:** Strict Pydantic request/response schemas with built-in OpenAPI documentation.
+> ⏳ **Render free tier:** after 15+ minutes of inactivity, the first load can take 30–50 seconds while the server wakes up. Later predictions are near-instant.
 
 ---
 
-## Tech Stack
+## ✨ Features
+
+- **Real-time predictions:** score from `0.00` to `10.00` using a Random Forest Regression pipeline (R² = 0.89)
+- **Interactive controls:** synced sliders for screen time, study, physical activity, and sleep, plus a live 24-hour activity sanity meter
+- **One-click presets:** *Balanced*, *Exam Crunch*, *Heavy Scroller*
+- **Visual score gauge:** animated SVG radial gauge, color-coded into four tiers (*Thriving*, *Balanced*, *Moderate Strain*, *High Strain*)
+- **Habit signals:** up to 3 actionable takeaways based on sleep, screen usage, phone unlocks, exercise, and stress
+- **Validated REST API:** strict Pydantic request/response schemas with OpenAPI docs
+
+---
+
+## 🛠 Tech Stack
 
 | Layer | Technologies |
 | :--- | :--- |
-| **Machine Learning & EDA** | Python 3.12.4, scikit-learn `1.6.1`, pandas, NumPy, joblib, Matplotlib, Seaborn |
+| **ML & EDA** | Python 3.12.4, scikit-learn 1.6.1, pandas, NumPy, joblib, Matplotlib, Seaborn |
 | **Backend & API** | FastAPI, Uvicorn, Pydantic v2 |
-| **Frontend** | HTML5, CSS3 (Responsive Grid, SVG Gauge), Vanilla JavaScript (`fetch` API) |
-| **Deployment** | Render (Single Python Web Service serving both API and static UI assets) |
+| **Frontend** | HTML5, CSS3 (responsive grid, SVG gauge), Vanilla JS (`fetch` API) |
+| **Deployment** | Render (single Python web service serving API + static UI) |
 
 ---
 
-## How It Works
+## ⚙️ How It Works
 
 ```text
 [ Browser UI (HTML/CSS/JS) ]
@@ -63,71 +68,78 @@
 
 ---
 
-## Machine Learning Pipeline & Model Performance
+## 📊 ML Pipeline & Performance
 
-All exploratory data analysis, preprocessing, model training, and evaluation steps are documented in `MENTAL_HEALTH_PREDICTOR_CODE.ipynb`.
+All EDA, preprocessing, training, and evaluation are documented in `MENTAL_HEALTH_PREDICTOR_CODE.ipynb`.
 
-### 1. Dataset Overview (`data.csv`)
-* **Raw Size:** 5,000 student records across 13 columns (12 input features + 1 continuous target: `Mental_Health_Score`), with **0 missing values**.
-* **Data Cleaning:**
-  * Dropped **2 duplicate rows** (final training/testing dataset: **4,998 rows**).
-  * Clipped unrealistic negative values in `Physical_Activity_Hours` (minimum raw value was `-0.4`) to `0.0`.
-* **Feature Summary (Post-Cleaning):**
-  * **Age:** 18 to 24 years (mean `20.82`)
-  * **Avg Daily Usage Hours:** 1.0 to 8.8 hrs (mean `5.08`)
-  * **Daily Unlocks:** 62 to 273 unlocks/day (mean `171.46`)
-  * **Study Hours:** 0.3 to 8.3 hrs (mean `3.01`)
-  * **Physical Activity Hours:** 0.0 to 4.1 hrs (mean `1.75`)
-  * **Sleep Hours Per Night:** 3.6 to 9.9 hrs (mean `6.63`)
-  * **Target (`Mental_Health_Score`):** 3.6 to 9.4 (mean `6.23`, std `1.28`)
+### 1. Dataset (`data.csv`)
+
+- **Raw size:** 5,000 student records, 13 columns (12 input features + target `Mental_Health_Score`), 0 missing values
+- **Cleaning:**
+  - Dropped 2 duplicate rows → **4,998 rows** for training/testing
+  - Clipped negative `Physical_Activity_Hours` values (raw min `-0.4`) to `0.0`
+- **Feature summary (post-cleaning):**
+
+| Feature | Range | Mean |
+| :--- | :---: | :---: |
+| Age | 18–24 yrs | 20.82 |
+| Avg Daily Usage Hours | 1.0–8.8 hrs | 5.08 |
+| Daily Unlocks | 62–273 / day | 171.46 |
+| Study Hours | 0.3–8.3 hrs | 3.01 |
+| Physical Activity Hours | 0.0–4.1 hrs | 1.75 |
+| Sleep Hours Per Night | 3.6–9.9 hrs | 6.63 |
+| **Target: Mental Health Score** | 3.6–9.4 | 6.23 (std 1.28) |
 
 ### 2. Feature Engineering & Preprocessing
-* **Country Grouping:** The original `Country` column contained 111 unique countries. To prevent high-cardinality sparsity during encoding, countries were mapped into `Grouped_Country` retaining the top 10 values (`Other`, `India`, `USA`, `Canada`, `Australia`, `UK`, `Germany`, `Mexico`, `Turkey`, `France`) and grouping all remaining countries into `Other`.
-* **Train/Test Split:** 80% training / 20% testing (`random_state=42`).
-* **Unified `ColumnTransformer` Pipeline:**
 
-| Feature Group | Columns | Transformations |
+- **Country grouping:** 111 unique countries reduced to `Grouped_Country` to avoid sparsity. Top 10 are kept (`Other`, `India`, `USA`, `Canada`, `Australia`, `UK`, `Germany`, `Mexico`, `Turkey`, `France`) and the rest become `Other`.
+- **Train/test split:** 80% / 20% (`random_state=42`)
+- **Unified `ColumnTransformer`:**
+
+| Feature Group | Columns | Transformation |
 | :--- | :--- | :--- |
-| **Skewed Numerical** | `Study_Hours`, `Age`, `Sleep_Hours_Per_Night` | `FunctionTransformer(np.log1p)` followed by `StandardScaler()` |
-| **Standard Numerical** | `Avg_Daily_Usage_Hours`, `Daily_Unlocks`, `Physical_Activity_Hours` | `StandardScaler()` |
-| **Ordinal Categorical** | `Stress_Level` | `OrdinalEncoder` with order `['Low', 'Medium', 'High', 'Very High']` |
-| **Nominal Categorical** | `Gender`, `Academic_Level`, `Most_Used_Platform`, `Purpose_Of_Use`, `Grouped_Country` | `OneHotEncoder(handle_unknown="ignore")` |
+| Skewed numerical | `Study_Hours`, `Age`, `Sleep_Hours_Per_Night` | `FunctionTransformer(np.log1p)` → `StandardScaler()` |
+| Standard numerical | `Avg_Daily_Usage_Hours`, `Daily_Unlocks`, `Physical_Activity_Hours` | `StandardScaler()` |
+| Ordinal categorical | `Stress_Level` | `OrdinalEncoder` (order: `Low`, `Medium`, `High`, `Very High`) |
+| Nominal categorical | `Gender`, `Academic_Level`, `Most_Used_Platform`, `Purpose_Of_Use`, `Grouped_Country` | `OneHotEncoder(handle_unknown="ignore")` |
 
-### 3. Model Comparison & Selection
-Three regression setups were benchmarked on the holdout test set, including hyperparameter tuning via 5-fold `RandomizedSearchCV` (15 iterations):
+### 3. Model Comparison
 
-| Model | Testing `$R^2$` | Training `$R^2$` | MAE | RMSE |
+Three setups were benchmarked on the holdout set, with tuning via 5-fold `RandomizedSearchCV` (15 iterations).
+
+| Model | Test R² | Train R² | MAE | RMSE |
 | :--- | :---: | :---: | :---: | :---: |
-| **Linear Regression** | `0.7418` | `0.7224` | `0.5346` | `0.6789` |
-| **Random Forest Regressor (Default)** | **`0.8899`** | `0.9828` | **`0.3281`** | **`0.4433`** |
-| **Random Forest Regressor (Tuned)** | `0.8758` | `0.9564` | `0.3533` | `0.4709` |
+| Linear Regression | 0.7418 | 0.7224 | 0.5346 | 0.6789 |
+| **Random Forest (Default)** ✅ | **0.8899** | 0.9828 | **0.3281** | **0.4433** |
+| Random Forest (Tuned) | 0.8758 | 0.9564 | 0.3533 | 0.4709 |
 
-*(Tuned best parameters found via randomized search: `n_estimators=300`, `max_depth=15`, `min_samples_split=5`, `min_samples_leaf=2`.)*
+- **Tuned params:** `n_estimators=300`, `max_depth=15`, `min_samples_split=5`, `min_samples_leaf=2`
+- **Deployed model:** Default Random Forest pipeline, saved as `mental_health_model.pkl` via `joblib`. It generalized best on unseen data (**R² = 0.8899**, **MAE = 0.33** on a 10-point scale).
 
-**Deployed Model:** The **Default Random Forest Regressor pipeline** was selected and serialized to `mental_health_model.pkl` using `joblib`, as it delivered the strongest generalization performance on the unseen test split (**`$R^2 = 0.8899$`**, **MAE = `0.33` points** on a 10-point scale).
+### 4. Score Tiers
 
-### 4. Score Interpretation Tiers
-Predictions returned by the backend are categorized as follows:
-* **Thriving:** `$\text{Score} \ge 7.5$`
-* **Balanced:** `$6.0 \le \text{Score} < 7.5$`
-* **Moderate Strain:** `$4.5 \le \text{Score} < 6.0$`
-* **High Strain:** `$\text{Score} < 4.5$`
-
----
-
-## How to Use the Website
-
-1. Visit **[https://mindpulse-mkvi.onrender.com/](https://mindpulse-mkvi.onrender.com/)**.
-2. **Quick Test:** Click any preset button in the top bar (**Balanced**, **Exam Crunch**, or **Heavy Scroller**) to auto-fill realistic habits and immediately run a prediction.
-3. **Custom Profile:**
-   * **01 Student Profile:** Enter your age and choose gender, academic level, and country.
-   * **02 Digital Habits:** Pick your most used social platform, primary purpose of use, daily screen time, and daily phone unlocks.
-   * **03 Daily Routine & Stress:** Adjust the sliders for study hours, physical activity, and nightly sleep (keep an eye on the 24-hour activity meter), then select your stress level.
-4. Click **Predict Mental Health Score** to view your predicted score, well-being category, and personalized habit signals.
+| Category | Score Range |
+| :--- | :---: |
+| 🟢 **Thriving** | ≥ 7.5 |
+| 🔵 **Balanced** | 6.0 – < 7.5 |
+| 🟠 **Moderate Strain** | 4.5 – < 6.0 |
+| 🔴 **High Strain** | < 4.5 |
 
 ---
 
-## Project Structure
+## 🚀 How to Use the Website
+
+1. Open **https://mindpulse-mkvi.onrender.com/**
+2. **Quick test:** click a preset (*Balanced*, *Exam Crunch*, or *Heavy Scroller*) to auto-fill habits and run a prediction.
+3. **Custom profile:**
+   - **01 Student Profile:** age, gender, academic level, country
+   - **02 Digital Habits:** most used platform, primary purpose, daily screen time, daily unlocks
+   - **03 Routine & Stress:** sliders for study, physical activity, and sleep (watch the 24-hour meter), then pick a stress level
+4. Click **Predict Mental Health Score** to see your score, category, and habit signals.
+
+---
+
+## 📁 Project Structure
 
 ```text
 MindPulse/
@@ -136,7 +148,7 @@ MindPulse/
 ├── requirements.txt                    # Python dependencies (pins scikit-learn==1.6.1)
 ├── .python-version                     # Pins Python 3.12.4 for pre-built Render wheels
 ├── data.csv                            # Dataset (5,000 student records)
-├── MENTAL_HEALTH_PREDICTOR_CODE.ipynb  # EDA, feature engineering & model training notebook
+├── MENTAL_HEALTH_PREDICTOR_CODE.ipynb  # EDA, feature engineering & model training
 ├── .gitignore                          # Git ignore rules
 ├── README.md                           # Project documentation
 └── static/
@@ -147,21 +159,17 @@ MindPulse/
 
 ---
 
-## Running Locally
+## 💻 Running Locally
 
-### Prerequisites
-* **Python 3.12.4** (or any Python `3.10`–`3.13` version compatible with `scikit-learn==1.6.1` binary wheels)
-* `pip` and `git`
+**Prerequisites:** Python 3.12.4 (or any 3.10–3.13 compatible with `scikit-learn==1.6.1` binary wheels), `pip`, and `git`.
 
-### Step-by-Step Setup
-
-1. **Clone the repository:**
+1. **Clone the repo**
    ```bash
    git clone https://github.com/Harsh-Raj-Jordan/MindPulse.git
    cd MindPulse
    ```
 
-2. **Create and activate a virtual environment (recommended):**
+2. **Create & activate a virtual environment (recommended)**
    ```bash
    # Windows (PowerShell)
    python -m venv .venv
@@ -172,27 +180,29 @@ MindPulse/
    source .venv/bin/activate
    ```
 
-3. **Install dependencies:**
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Start the FastAPI server:**
+4. **Start the server**
    ```bash
    uvicorn main:app --reload
    ```
 
-5. **Open in your browser:**
-   * Web UI: `http://127.0.0.1:8000`
-   * Swagger API Docs: `http://127.0.0.1:8000/docs`
-   * Health Check: `http://127.0.0.1:8000/health`
+5. **Open in browser**
+   - Web UI: `http://127.0.0.1:8000`
+   - Swagger Docs: `http://127.0.0.1:8000/docs`
+   - Health Check: `http://127.0.0.1:8000/health`
 
 ---
 
-## API Reference
+## 🔌 API Reference
 
 ### `GET /health`
+
 Returns service status.
+
 ```json
 {
   "status": "ok"
@@ -200,9 +210,11 @@ Returns service status.
 ```
 
 ### `POST /predict`
-Runs inference on a student profile and returns the predicted score, category, summary, and habit insights.
 
-**Sample Request (`application/json`):**
+Runs inference on a student profile and returns the score, category, summary, and habit insights.
+
+**Request (`application/json`):**
+
 ```json
 {
   "age": 21,
@@ -220,7 +232,8 @@ Runs inference on a student profile and returns the predicted score, category, s
 }
 ```
 
-**Sample Response (`200 OK`):**
+**Response (`200 OK`):**
+
 ```json
 {
   "predicted_mental_health_score": 7.51,
@@ -235,18 +248,18 @@ Runs inference on a student profile and returns the predicted score, category, s
 
 ---
 
-## Deployment on Render
+## ☁️ Deployment on Render
 
-This repository is configured for zero-friction deployment as a **single Render Web Service**:
+Deployed as a **single Render Web Service**:
 
-* **Runtime:** Python 3 (`PYTHON_VERSION=3.12.4`, matching `.python-version`)
-* **Build Command:** `pip install -r requirements.txt`
-* **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
+- **Runtime:** Python 3 (`PYTHON_VERSION=3.12.4`, matching `.python-version`)
+- **Build command:** `pip install -r requirements.txt`
+- **Start command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
 
-Pinning `PYTHON_VERSION` to `3.12.4` and `scikit-learn==1.6.1` guarantees fast installation via pre-built `cp312` binary wheels and ensures exact compatibility when unpickling `mental_health_model.pkl`.
+Pinning `PYTHON_VERSION=3.12.4` and `scikit-learn==1.6.1` ensures fast installs via pre-built `cp312` wheels and exact compatibility when unpickling `mental_health_model.pkl`.
 
 ---
 
-## Disclaimer
+## ⚠️ Disclaimer
 
-MindPulse is designed strictly for **educational and exploratory machine learning purposes**. Predictions reflect statistical patterns learned from survey data and must **not** be treated as medical, psychological, or clinical advice.
+MindPulse is for **educational and exploratory ML purposes only**. Predictions reflect statistical patterns in survey data and must **not** be treated as medical, psychological, or clinical advice.
